@@ -2,3 +2,9 @@ Traffic Capture:
 
 1) Packets from Rpi are UDP, IPv4
 2) Filtered by using 'http' got results by using the internet. Protocal was TCP, IPv4
+
+Sending Traffic:
+
+1) Use filter: ip.src == 192.168.10.2
+2) Packet size is 64 bytes, data is 22 bytes
+
