@@ -1,0 +1,20 @@
+Ping:
+
+1) Lab->Pi 
+10 packets transmitted, 10 received, 0% packet loss, time 1835ms rtt min/avg/max/mdev = 	0.338/0.432/0.472/0.042 ms
+
+2) Pi->Lab
+10 packets transmitted, 10 received, 0% packet loss, time 1839ms rtt min/avg/max/mdev = 0.350/0.461/0.526/0.058 ms
+
+3) Pi->Lab
+100 packets transmitted, 100 received, 0% packet loss, time 99ms rtt min/avg/max/mdev = 0.315/0.367/0.467/0.019 ms
+
+First 2 results are approximatly the same with small deviation about 0.43/0.46 ms, the small diffence will come down to the the hardware working better when the Pi is recieving
+
+The flooding result is faster, which may be down to affects such as temporal and spacial locality in the cache is more effectively used.
+
+The large variation in the min and max values will be due to processes such as flushing the cache.
+
+4) Pi->Lab
+1000 packets transmitted, 1000 received, 0% packet loss, time 342ms= rtt min/avg/max/mdev = 0.119/0.308/0.541/0.032 ms, ipg/ewma 0.342/0.200 ms
+
