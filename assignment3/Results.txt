@@ -1,0 +1,23 @@
+Simple Measurements:
+
+1) When the RPi is booting, power rises to 2W, settles briefly, then rises to 4-5W. Once the boot process is complete the Pi settles at about 3W.
+
+2) The Pi does not reach a complete steady state, but does settle in the range of 3-4W. This is because background functions do not operate continuously.
+
+Network Activity:
+
+1) I ran a tcp dump and counted the number of events in 1s, and averaged over a few samples. I got about 15 events per second.
+
+2) Flooding from the pi gave an increase in power to about 4.1W. Flooding from the lab machine gave an increase in power to about 3.5W. It is more expensive for a RPi to send than recieve. Reasons for this could be that producing the packets and sending them is more computationally intense than recieving and decoding them.
+
+3) Intital test using iperf gave a bandwidth of 549 Mbit/sec and resulted in a loss rate of 43%. The power peaked at 5.2W and roughly averaged at 4.7W. After changing rx-usecs to 0, speed increased as expected with bandwidth increasing to 957 Mbits/sec. I also expected the power consumption to increase to support the higher processing rate, this did not happen though with power consumption averaging at about 4.2W.
+
+CPU Activity:
+
+Using Stress-ng achieved significantly higher power consumption than previous, approximately 7W and the current increased to allow this. Voltage stayed at 5V as it has this whole time.
+
+Theoretical Experiments:
+
+1) Oman has a carbon intensity of 458g/kWh, my raspberry pi has a power consumption at say 4W on average throughout the exercise which is about 90 minutes. This gives 1.5*4e-3 = 6e-3kWh.Hence CF = 458*6e-3 = 2.7g of carbon.
+
+2) A RPi works at an average of 4W, so requires 35kWh of energy a year. This would approximate the worlds energy consumption as 1.05e12 kWh. The average carbon intensity of the world is about 450g/kWh so that gives a total CF of 470 million tonnes per year. This is not a fair estimate as a lot of devices work at much higher power than a RPi.
