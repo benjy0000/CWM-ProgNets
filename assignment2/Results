@@ -18,3 +18,22 @@ The large variation in the min and max values will be due to processes such as f
 4) Pi->Lab
 1000 packets transmitted, 1000 received, 0% packet loss, time 342ms= rtt min/avg/max/mdev = 0.119/0.308/0.541/0.032 ms, ipg/ewma 0.342/0.200 ms
 
+5)The graphs show heavy tails on either side, so max and min would be a poor estimate of performance. Mean is much better, but median is probably better again as all graphs show that one small range is far more likely then any other time. This is about 0.4ms for 0.01s ping and 0.47ms for the others. This shows that on average, 0.01s is fastest and this is likely due to inefficiencies arrising due to flushing in the second 2.
+
+iperf:
+
+1) Lab Machine as server resulted in 943 MBit/sec
+
+2) Iperf results for UDP are:
+B = 105Kbit/sec, Packets lost = 0/46 (0%)
+B = 1Mbit/sec, Packets lost = 0/429 (0%)
+B = 100Mbit/sec, Packets lost = 0/42521 (0%)
+
+iperf3:
+
+1) Results for varying bandwidth:
+B = 102 Kbit/sec, Packets Lost = 0/44 (0%)
+B = 1 Mbit/sec, Packets Lost = 0/432 (0%)
+B = 1000 Mbit/sec, Packets Lost = 0/43157 (0%)
+
+2) Both iperf and iperf3 do not loose any packets apparently, I guess that means both are incredible. I haven't plotted this as there's not really any point. I noticed that the jitter in iperf3 also comes out as 0.000ms rather than iperf which has a jitter of around 0.005ms. This shows iperf3 is a better test.
