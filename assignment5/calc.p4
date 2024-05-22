@@ -68,8 +68,14 @@ const bit<8>  P4CALC_OR    = 0x7c;   // '|'
 const bit<8>  P4CALC_CARET = 0x5e;   // '^'
 
 header p4calc_t {
-    bit<8>  op;
-/* TODO
+    P4CALC_P p;
+    P4CALC_4 four;
+    P4CALC_VER ver
+    bit<8> op;
+    bit<32> operand_a;
+    bit<32> operand_b;
+    bit<32> res;
+ /*
  * fill p4calc_t header with P, four, ver, op, operand_a, operand_b, and res
    entries based on above protocol header definition.
  */
@@ -112,15 +118,13 @@ parser MyParser(packet_in packet,
     }
 
     state check_p4calc {
-        /* TODO: just uncomment the following parse block */
-        /*
+
         transition select(packet.lookahead<p4calc_t>().p,
         packet.lookahead<p4calc_t>().four,
         packet.lookahead<p4calc_t>().ver) {
             (P4CALC_P, P4CALC_4, P4CALC_VER) : parse_p4calc;
             default                          : accept;
         }
-        */
     }
 
     state parse_p4calc {
@@ -146,6 +150,8 @@ control MyIngress(inout headers hdr,
     action send_back(bit<32> result) {
         /* TODO
          * - put the result back in hdr.p4calc.res
+         
+         
          * - swap MAC addresses in hdr.ethernet.dstAddr and
          *   hdr.ethernet.srcAddr using a temp variable
          * - Send the packet back to the port it came from
