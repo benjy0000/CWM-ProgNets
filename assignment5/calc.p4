@@ -68,9 +68,9 @@ const bit<8>  P4CALC_OR    = 0x7c;   // '|'
 const bit<8>  P4CALC_CARET = 0x5e;   // '^'
 
 header p4calc_t {
-    P4CALC_P p;
-    P4CALC_4 four;
-    P4CALC_VER ver
+    bit<8> p;
+    bit<8> four;
+    bit<8> ver;
     bit<8> op;
     bit<32> operand_a;
     bit<32> operand_b;
@@ -158,26 +158,39 @@ control MyIngress(inout headers hdr,
              by saving standard_metadata.ingress_port into
              standard_metadata.egress_spec
          */
+         
+         hdr.p4calc.res = result;
+         
+         bit<48> tmp = hdr.ethernet.srcAddr;
+         hdr.ethernet.dstAddr = hdr.ethernet.srcAddr;
+         hdr.ethernet.srcAddr = tmp;
+         
+         standard_metadata.ingress_port = standard_metadata.egress_port;
     }
 
     action operation_add() {
-        /* TODO call send_back with operand_a + operand_b */
+        bit<32> result = hdr.p4calc.operand_a + hdr.p4calc.operand_b;
+        send_back(result);
     }
 
     action operation_sub() {
-        /* TODO call send_back with operand_a - operand_b */
+        bit<32> result = hdr.p4calc.operand_a - hdr.p4calc.operand_b;
+        send_back(result);
     }
 
     action operation_and() {
-        /* TODO call send_back with operand_a & operand_b */
+        bit<32> result = hdr.p4calc.operand_a & hdr.p4calc.operand_b;
+        send_back(result);
     }
 
     action operation_or() {
-        /* TODO call send_back with operand_a | operand_b */
+        bit<32> result = hdr.p4calc.operand_a | hdr.p4calc.operand_b;
+        send_back(result);
     }
 
     action operation_xor() {
-        /* TODO call send_back with operand_a ^ operand_b */
+        bit<32> result = hdr.p4calc.operand_a ^ hdr.p4calc.operand_b;
+        send_back(result);
     }
 
     action operation_drop() {
