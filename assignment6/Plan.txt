@@ -1,0 +1,49 @@
+Exercise 6 Plan:
+
+Idea:
+
+SatNav system to take in information about a road network from current cars on the road,
+collate information and return a message to each car about the shortest path between its
+location and desired destination.
+
+The current plan is not to implement cars moving, just to take in current information about
+the state of the road network and deduce the optimal path for each car.
+
+Cars are also assumed to be at a node, and all to have the same speed, so if there's no
+traffic then they'll take the same time (if there is traffic they would be gauranteed to
+take the same time anyway)
+
+Brief Summary:
+
+Cars give their location (node on network)
+Cars give time to travel along last 3 roads
+Pi constructs table of most recent road information
+Pi calculates shortest path based on this and returns it
+
+Representing the road network:
+
+Network is represented by a graph, consisting of nodes and edges.
+This can be mathematically expressed as an adjacency matrix, for example the ijth entry
+represents the current time taken to travel from i to j. This is stored on the Pi and updated
+accordingly.
+For simplicity, I will assume all cars are at a node as otherwise this makes the problem much
+more complex.
+Cars desired destination will be given as a node.
+Cars will also provide information about how long it took them to travel along the last road they were on, and how recently they were on it. How long ago the most recent car completed a
+road is stored in a time matrix mirroring the adjacency matrix.
+
+Updating the road network:
+
+Whenever a car sends their current location and previous roads info, if they were the most
+recent to finish a road, the time taken for them to travel it is updated to the adjacency
+matrix. There will be a default value for each entry in the adjacency matrix in case no car
+has been on a particular road recently.
+
+Calculating shortest path:
+
+Use a shortest path algorithm to determine the shortest path from current node to desired node
+using adjacency matrix.
+
+Returning information:
+
+Returns list of ij values to identify shortest path.
