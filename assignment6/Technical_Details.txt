@@ -1,22 +1,23 @@
 Adjacency Matrix:
 
-64*64 with 8 bit entries, note 0,0 is reserved for a 'not applicable' state so technicaly 63*63
-as all 0 entries are ignored.
-If a road system does not fill up the 63*63 room, or not all nodes are connected (e.g. road ij does not exist), relevent entries are set to max time as not to interfere with path finding.
-
-Time Matrix:
-
-64*64, but as the adjacency matrix reserves all 0 entries for N/A, we have to also disregard
-those here. Hence 63*63
+256*256 with 8 bit entries
+If a road system does not fill up the 256 room, or not all nodes are connected (e.g. road ij does not exist), relevent entries are set to max time as not to interfere with path finding.
 
 Car -> Pi Header:
 
 1) Ethernet
-2) 8 bit Location
-3) 8 bit Destination
-4) 48 bit (3*16) Last 3 Roads - If this is not applicable e.g. the car is just leaving home,
-   then these are set to 0
-5) 24 bit (3*8) Last 3 Roads Time, once again if not applicable these are set to 0
+
+2) 8 bit p
+3) 8 bit four
+4) 8 bit version
+
+The above are to verify the packet is a satnav packet before parsing
+
+5) 8 bit Location
+6) 8 bit Destination
+7) 8 bit Finished Road Flag
+7) 16 bit Last road (zeros if N/A)
+5) 8 bit last road time, once again if not applicable, set to 0
 
 Pi -> Car Header:
 

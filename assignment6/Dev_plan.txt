@@ -1,0 +1,7 @@
+Development Plan:
+
+1) Get it so that it takes header in and returns verification
+3) Get it to return something in the correct format
+2) Implement adjacency matrix so that it returns something from that, use very simple graph
+4) Check everything formated correctly e.g. N/A state and not connected
+5) Implement shortest path algorithm.
